@@ -1,0 +1,23 @@
+<h1>Ignored Items</h1>
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>itemid</th>
+      <th>search_term</th>
+      <th>created_at</th>
+      <th>updated_at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ignoreditems.each do |result| %>
+      <tr>
+        <td><%= result.id %></td>
+        <td><%= result.itemid %></td>
+        <td><%= result.search_term %></td>
+        <td><%= result.created_at %></td>
+        <td><%= result.updated_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

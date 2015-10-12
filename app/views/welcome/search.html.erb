@@ -1,0 +1,28 @@
+<h1>You searched for: <%= params[:welcome][:search] %></h1>
+<table>
+  <thead>
+    <tr>
+      <th>ItemID</th>
+      <th>Item Title</th>
+      <th>Seller</th>
+      <th>Current Bid</th>
+      <th>Bids</th>
+      <th>Link</th>
+      <th>Ignore?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @results.each do |result| %>
+      <% next if @ignoreditems.any? { |a| a.itemid == result.itemid } %>
+      <tr id="<%= result.itemid %>">
+        <td><%= result.itemid %></td>
+        <td><%= result.item %></td>
+        <td><%= result.seller %></td>
+        <td><%= result.current %></td>
+        <td><%= result.bids %></td>
+        <td><a href="<%= result.href %>">Link</a></td>
+        <td><button type="button" <%= "data-itemid=#{result.itemid}" %>>Ignore</button></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
