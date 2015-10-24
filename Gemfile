@@ -32,11 +32,19 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'goodwill'
-gem 'pry'
+gem 'goodwill', '~> 0.1.2'
+gem 'devise', '~> 3.5'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap'
+  gem 'rails-assets-datatables'
+  gem 'rails-assets-fontawesome'
+  gem 'rails-assets-datatables-bootstrap3-plugin'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'pry'
   gem 'byebug'
 end
 

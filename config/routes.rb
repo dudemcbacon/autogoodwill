@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'welcome/index'
-  post 'welcome/index' => 'welcome#search'
+  get 'welcome/search' => 'welcome#search'
+  get "welcome/in_progress" => "welcome#in_progress"
 
-  resources :ignored_items
+  resources :ignored_items, :snipes
 
 
   # The priority is based upon order of creation: first created -> highest priority.

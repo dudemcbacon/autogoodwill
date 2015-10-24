@@ -1,0 +1,2 @@
+module SnipesHelper
+end

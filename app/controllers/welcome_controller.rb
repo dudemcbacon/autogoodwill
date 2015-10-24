@@ -1,16 +1,17 @@
 class WelcomeController < ApplicationController
   def index
-    logger.info "You are in index"
   end
 
   def search
-    logger.info "You are in search"
     account = Goodwill::Account.new('brandonburnett', 'butthat1')
-    @results = account.search(params[:welcome][:search])
-    @ignoreditems = IgnoredItem.all
+    ignored = IgnoredItem.all.map { |i| i.itemid }
+    results = account.search(params[:search])
+    render json: { data: results.delete_if { |f| ignored.include? f.itemid } }
   end
 
-  def ignore
-    binding.pry
+  def in_progress
+    account = Goodwill::Account.new('brandonburnett', 'butthat1')
+    @inprogress = account.in_progress
+    render json: { data: @inprogress }
   end
 end
