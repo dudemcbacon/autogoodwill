@@ -4,7 +4,6 @@ class WelcomeController < ApplicationController
   def index
     @saved_searches = [
       'atari',
-      'apple ii',
       'commodore',
       'dreamcast',
       'macintosh',
