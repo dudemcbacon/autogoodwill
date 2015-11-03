@@ -2,7 +2,17 @@ class WelcomeController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @saved_searches = [ 'commodore', 'dreamcast' ]
+    @saved_searches = [
+      'atari',
+      'apple ii',
+      'commodore',
+      'dreamcast',
+      'macintosh',
+      'handspring',
+      'turbografx',
+      'newton',
+      'tandy'
+    ]
   end
 
   # TODO: Put username and pass into DB table
