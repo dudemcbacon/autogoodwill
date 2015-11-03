@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  get 'welcome/index'
+  get 'welcome/search' => 'welcome#search'
   get 'welcome/in_progress' => 'welcome#in_progress'
+  get 'welcome/index'
   get 'welcome/settings' => 'welcome#settings'
 
   resources :ignored_items, :snipes

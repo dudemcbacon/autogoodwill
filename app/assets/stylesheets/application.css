@@ -14,8 +14,8 @@
  *= require_self
  *= require font-awesome
  *= require bootstrap
- *= require datatables
- *= require DataTables/dataTables.bootstrap.scss
+ *= require datatables/jquery.dataTables.scss
+ *= require datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.scss
  */
 
 .vertical-center {
