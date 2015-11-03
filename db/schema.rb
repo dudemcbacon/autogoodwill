@@ -11,14 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024172256) do
+ActiveRecord::Schema.define(version: 20151025212618) do
 
   create_table "ignored_items", force: :cascade do |t|
     t.string   "itemid"
     t.string   "search_term"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
+
+  add_index "ignored_items", ["user_id"], name: "index_ignored_items_on_user_id"
+
+  create_table "settings", force: :cascade do |t|
+    t.string   "var",         null: false
+    t.text     "value"
+    t.integer  "target_id",   null: false
+    t.string   "target_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true
 
   create_table "snipes", force: :cascade do |t|
     t.integer  "itemid"

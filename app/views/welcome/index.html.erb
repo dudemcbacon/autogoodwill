@@ -4,7 +4,7 @@
   </div>
 	<div class="row">
     <div class="col-md-12">
-			<table id="in_progress" class="table">
+			<table id="in_progress" class="table table-hover">
 				<thead>
 					<tr>
 						<th>ItemID</th>
@@ -12,16 +12,16 @@
 						<th>Seller</th>
 						<th>Current Bid</th>
 						<th>Bids</th>
-						<th>Link</th>
 					</tr>
 				</thead>
 				<tbody>
 				</tbody>
 			</table>
+      <% @saved_searches.each do |saved_search| %>
       <div class="page-header">
-        <h2>Saved Search <small>Commodore</small></h2>
+        <h2>Saved Search <small><%= saved_search.capitalize %></small></h2>
       </div>
-			<table id="saved_search_commodore" class="table">
+      <table class="saved_search table table-hover" data-saved-search="<%= saved_search %>">
 				<thead>
 					<tr>
 						<th>ItemID</th>
@@ -29,13 +29,13 @@
 						<th>Seller</th>
 						<th>Current Bid</th>
 						<th>Bids</th>
-						<th>Link</th>
 						<th>Ignore?</th>
 					</tr>
 				</thead>
 				<tbody>
 				</tbody>
 			</table>
+      <% end %>
     </div>
 	</div>
 </div>

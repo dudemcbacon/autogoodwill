@@ -12,7 +12,17 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  *= require bootstrap
  *= require datatables
- *= require datatables-bootstrap3-plugin
+ *= require DataTables/dataTables.bootstrap.scss
  */
+
+.vertical-center {
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

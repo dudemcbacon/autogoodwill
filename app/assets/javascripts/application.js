@@ -15,5 +15,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require datatables
-//= require datatables-bootstrap3-plugin
+//= require DataTables/dataTables.bootstrap.js
 //= require_tree .

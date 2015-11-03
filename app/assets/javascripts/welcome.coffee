@@ -34,6 +34,31 @@ $ ->
 
 # DataTables Init for in progress table
 $ ->
+  savedSearchTables = {}
+  $('table[data-saved-search]').each( (element) ->
+    name = $(this).data('saved-search')
+    savedSearchTables[name] = $('table[data-saved-search=' + name + ']').DataTable({
+      'ajax': {
+        'url': '/welcome/search?search=' + name,
+      },
+      "columns": [
+        { "data": "itemid" },
+        { "data": "item" },
+        { "data": "seller" },
+        { "data": "current" },
+        { "data": "bids" },
+        {
+          "data": null,
+          "defaultContent": "<button class='btn btn-danger'>Ignore</button>"
+        }
+      ],
+      "fnInitComplete": $('table[data-saved-search=' + name + ']').on( 'click', 'button', () ->
+        data = savedSearchTables[name].row( $(this).parents('tr') ).data()
+        ignore_item(this, data.itemid, name)
+      ),
+    })
+  )
+
   in_progress_table = $('#in_progress').DataTable({
     "ajax": "/welcome/in_progress",
     "columns": [
@@ -42,33 +67,8 @@ $ ->
       { "data": "seller" },
       { "data": "current" },
       { "data": "bids" },
-      { "data": "href" },
     ],
     "fnRowCallback": (element, object) ->
       $(element).addClass('success') if object.winning
       $(element).addClass('danger') unless object.winning
   })
-
-$ ->
-  commodore_table = $('#saved_search_commodore').DataTable({
-    'ajax': {
-      'url': '/welcome/search?search=commodore',
-    },
-    "columns": [
-      { "data": "itemid" },
-      { "data": "item" },
-      { "data": "seller" },
-      { "data": "current" },
-      { "data": "bids" },
-      { "data": "href" },
-      {
-        "data": null,
-        "defaultContent": "<button class='btn btn-danger'>Ignore</button>"
-      }
-    ],
-    "fnInitComplete": $('#saved_search_commodore tbody').on( 'click', 'button', () ->
-      data = commodore_table.row( $(this).parents('tr') ).data()
-      ignore_item(this, data.itemid, 'commodore')
-    ),
-  })
-
