@@ -31,6 +31,7 @@ gem 'goodwill', '>= 0.1.3'
 gem 'devise', '~> 3.5'
 gem 'font-awesome-rails'
 gem 'ledermann-rails-settings'
+gem 'puma', '~> 2.14'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap'
