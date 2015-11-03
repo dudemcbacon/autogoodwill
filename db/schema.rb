@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20151025212618) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "ignored_items", force: :cascade do |t|
     t.string   "itemid"
     t.string   "search_term"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20151025212618) do
     t.integer  "user_id"
   end
 
-  add_index "ignored_items", ["user_id"], name: "index_ignored_items_on_user_id"
+  add_index "ignored_items", ["user_id"], name: "index_ignored_items_on_user_id", using: :btree
 
   create_table "settings", force: :cascade do |t|
     t.string   "var",         null: false
@@ -32,7 +35,7 @@ ActiveRecord::Schema.define(version: 20151025212618) do
     t.datetime "updated_at"
   end
 
-  add_index "settings", ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true
+  add_index "settings", ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true, using: :btree
 
   create_table "snipes", force: :cascade do |t|
     t.integer  "itemid"
@@ -57,7 +60,8 @@ ActiveRecord::Schema.define(version: 20151025212618) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "ignored_items", "users"
 end
