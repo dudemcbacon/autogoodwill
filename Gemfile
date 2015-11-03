@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'goodwill', '~> 0.1.2'
+gem 'goodwill', '>= 0.1.3'
 gem 'devise', '~> 3.5'
 gem 'font-awesome-rails'
 gem 'ledermann-rails-settings'
