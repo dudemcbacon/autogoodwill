@@ -19,6 +19,5 @@ class WelcomeController < ApplicationController
   end
 
   def settings
-    binding.pry
   end
 end
