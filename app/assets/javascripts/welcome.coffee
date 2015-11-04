@@ -56,6 +56,10 @@ $ ->
         data = savedSearchTables[name].row( $(this).parents('tr') ).data()
         ignore_item(this, data.itemid, name)
       ),
+      "fnRowCallback": (element, object) ->
+        $(element).click(object, (event) ->
+          document.location.href = event.data.href
+        )
     })
   )
 
