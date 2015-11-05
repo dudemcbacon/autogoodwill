@@ -3,7 +3,7 @@ ruby '2.2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
-gem 'pg'
+gem 'pg', '~> 0.18'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -11,8 +11,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem 'jquery-rails'
-gem 'turbolinks'
+gem 'jquery-rails', '~> 4.0'
+gem 'turbolinks', '~> 2.5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -29,15 +29,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'goodwill', '>= 0.1.3'
 gem 'devise', '~> 3.5'
-gem 'font-awesome-rails'
-gem 'ledermann-rails-settings'
+gem 'font-awesome-rails', '~> 4.4'
+gem 'ledermann-rails-settings', '~> 2.4'
 gem 'puma', '~> 2.14'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-bootstrap'
-  gem 'rails-assets-datatables'
-  gem 'rails-assets-datatables-plugins'
-  gem 'rails-assets-selectize'
+  gem 'rails-assets-bootstrap', '~> 3.3'
+  gem 'rails-assets-datatables', '~> 1.10'
+  gem 'rails-assets-datatables-plugins', '~> 1.10'
+  gem 'rails-assets-selectize', '~> 0.12'
 end
 
 group :development, :test do

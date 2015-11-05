@@ -214,24 +214,24 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise (~> 3.5)
-  font-awesome-rails
+  font-awesome-rails (~> 4.4)
   goodwill (>= 0.1.3)
   jbuilder (~> 2.0)
-  jquery-rails
-  ledermann-rails-settings
-  pg
+  jquery-rails (~> 4.0)
+  ledermann-rails-settings (~> 2.4)
+  pg (~> 0.18)
   pry
   puma (~> 2.14)
   rails (= 4.2.4)
-  rails-assets-bootstrap!
-  rails-assets-datatables!
-  rails-assets-datatables-plugins!
-  rails-assets-selectize!
+  rails-assets-bootstrap (~> 3.3)!
+  rails-assets-datatables (~> 1.10)!
+  rails-assets-datatables-plugins (~> 1.10)!
+  rails-assets-selectize (~> 0.12)!
   rails_12factor
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
-  turbolinks
+  turbolinks (~> 2.5)
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 
