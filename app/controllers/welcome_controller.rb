@@ -28,5 +28,15 @@ class WelcomeController < ApplicationController
   end
 
   def settings
+    @saved_searches = [
+      'atari',
+      'commodore',
+      'dreamcast',
+      'macintosh',
+      'handspring',
+      'turbografx',
+      'newton',
+      'tandy'
+    ]
   end
 end

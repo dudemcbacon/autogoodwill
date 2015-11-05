@@ -16,4 +16,7 @@
 //= require bootstrap
 //= require datatables/jquery.dataTables.js
 //= require datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js
+//= require microplugin
+//= require sifter
+//= require selectize
 //= require_tree .

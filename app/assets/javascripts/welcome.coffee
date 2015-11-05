@@ -49,16 +49,17 @@ $ ->
         { "data": "bids" },
         {
           "data": null,
-          "defaultContent": "<button class='btn btn-danger'>Ignore</button>"
+          "defaultContent": "<button class='btn btn-danger ignore'>Ignore</button>&nbsp;<button class='btn btn-primary view' data-toggle='modal' data-target='#itemModal'>View</button>"
         }
       ],
-      "fnInitComplete": $('table[data-saved-search=' + name + ']').on( 'click', 'button', () ->
-        data = savedSearchTables[name].row( $(this).parents('tr') ).data()
-        ignore_item(this, data.itemid, name)
-      ),
-      "fnRowCallback": (element, object) ->
-        $(element).click(object, (event) ->
-          document.location.href = event.data.href
+      "fnInitComplete": () ->
+        $('table[data-saved-search=' + name + ']').on( 'click', 'button.ignore', () ->
+          data = savedSearchTables[name].row( $(this).parents('tr') ).data()
+          ignore_item(this, data.itemid, name)
+        )
+        $('table[data-saved-search=' + name + ']').on( 'click', 'button.view', () ->
+          data = savedSearchTables[name].row( $(this).parents('tr') ).data()
+          document.location.href = data.href
         )
     })
   )
@@ -76,3 +77,13 @@ $ ->
       $(element).addClass('success') if object.winning
       $(element).addClass('danger') unless object.winning
   })
+
+  $('input#saved_searches').selectize({
+    delimiter: ',',
+    persist: false,
+    create: (input) ->
+      return {
+        value: input,
+        text: input
+      }
+    });

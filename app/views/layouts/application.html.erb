@@ -14,9 +14,10 @@
 				<div class="navbar-header">
 					<a class="navbar-brand" href="index.html">AutoGoodwill</a>
 				</div>
+        <% if user_signed_in? %>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i> <%= 'butt' %><span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i> <%= current_user.email %><span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Profile</a></li>
 							<li><a href="#">Settings</a></li>
@@ -25,6 +26,7 @@
 						</ul>
 					</li>
 				</ul>
+        <% end %>
       </div>
     </nav>
 

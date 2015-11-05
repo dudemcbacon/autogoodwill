@@ -37,6 +37,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap'
   gem 'rails-assets-datatables'
   gem 'rails-assets-datatables-plugins'
+  gem 'rails-assets-selectize'
 end
 
 group :development, :test do

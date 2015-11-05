@@ -1,0 +1,6 @@
+<h1>poop</h1>
+<%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:saved_searches, "Saved Searches:") %>
+  <%= text_field_tag(:saved_searches, @saved_searches.join(',')) %>
+  <%= submit_tag("Save") %>
+<% end %>

@@ -138,6 +138,12 @@ GEM
       rails-assets-jquery (>= 1.7.0)
     rails-assets-datatables-plugins (1.10.9)
     rails-assets-jquery (2.1.4)
+    rails-assets-microplugin (0.0.3)
+    rails-assets-selectize (0.12.1)
+      rails-assets-jquery (>= 1.7.0)
+      rails-assets-microplugin (~> 0.0.0)
+      rails-assets-sifter (~> 0.4.0)
+    rails-assets-sifter (0.4.5)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -220,6 +226,7 @@ DEPENDENCIES
   rails-assets-bootstrap!
   rails-assets-datatables!
   rails-assets-datatables-plugins!
+  rails-assets-selectize!
   rails_12factor
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
