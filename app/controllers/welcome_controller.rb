@@ -2,41 +2,54 @@ class WelcomeController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @saved_searches = [
-      'atari',
-      'commodore',
-      'dreamcast',
-      'macintosh',
-      'handspring',
-      'turbografx',
-      'newton',
-      'tandy'
-    ]
+    @saved_searches = current_user.settings(:dashboard).saved_searches
   end
 
-  # TODO: Put username and pass into DB table
   def search
-    account = Goodwill::Account.new('brandonburnett', 'butthat1')
-    ignored = current_user.ignored_items.map { |i| i.itemid }
-    results = account.search(params[:search])
-    render json: { data: results.delete_if { |f| ignored.include? f.itemid } }
+    if current_user.auctions.where(searchterm: params[:search]).empty?
+      logger.info("Getting search results for #{params[:search]} from ShopGoodwill.com")
+      account = Goodwill::Account.new(view_context.gw_user, view_context.gw_pass)
+      auctions = account.search(params[:search])
+      auctions.each do |auction|
+        new_auction = current_user.auctions.create(auction.to_hash)
+        new_auction.searchterm = params[:search]
+        new_auction.save
+      end
+      results = current_user.auctions
+    else
+      logger.info("Getting search results for #{params[:search]} from database")
+      results = current_user.auctions.where(searchterm: params[:search])
+    end
+    render json: { data: results }
   end
 
   def in_progress
-    account = Goodwill::Account.new('brandonburnett', 'butthat1')
-    render json: { data: account.in_progress }
+    if current_user.bidding_auctions.empty?
+      logger.info("Getting in progress auctions from ShopGoodwill.com")
+      account = Goodwill::Account.new(view_context.gw_user, view_context.gw_pass)
+      results = account.in_progress
+      results.each do |result|
+        bidding_auction = current_user.bidding_auctions.create(result.to_hash)
+        bidding_auction.save
+      end
+    else
+      logger.info("Getting in progress auctions from database")
+      results = current_user.bidding_auctions
+    end
+    render json: { data: results }
   end
 
   def settings
-    @saved_searches = [
-      'atari',
-      'commodore',
-      'dreamcast',
-      'macintosh',
-      'handspring',
-      'turbografx',
-      'newton',
-      'tandy'
-    ]
+    @saved_searches = current_user.settings(:dashboard).saved_searches
+    @gw_user = current_user.settings(:dashboard).gw_user
+  end
+
+  def settings_save
+    saved_searches = params[:saved_searches].split(',').sort
+    current_user.settings(:dashboard).saved_searches = saved_searches
+    current_user.settings(:dashboard).gw_user = params[:gw_user]
+    current_user.settings(:dashboard).gw_pass = params[:gw_pass]
+    current_user.save
+    redirect_to('welcome#settings')
   end
 end

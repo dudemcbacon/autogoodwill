@@ -1,25 +1,43 @@
 <div class="container-fluid">
-  <div class="page-header">
-		<h1>In Progress <small>Auction currently being bid on</small></h1>
-  </div>
-	<div class="row">
+	<div id="in_progress" class="row">
     <div class="col-md-12">
-			<table id="in_progress" class="table table-hover">
+      <div class="page-header">
+        <h2>
+          In Progress 
+            <small>
+              Auction currently being bid on
+              <div class="pull-right">Last Updated <abbr class="timeago updated_at"></abbr></div>
+            </small>
+        </h1>
+      </div>
+			<table id="in_progress_table" class="table table-hover">
 				<thead>
 					<tr>
 						<th>ItemID</th>
 						<th>Item Title</th>
 						<th>Seller</th>
 						<th>Current Bid</th>
+            <th>Shipping</th>
 						<th>Bids</th>
+            <th>End</th>
 					</tr>
 				</thead>
 				<tbody>
 				</tbody>
 			</table>
-      <% @saved_searches.each do |saved_search| %>
+    </div>
+  </div>
+  <% @saved_searches.each do |saved_search| %>
+  <div id="<%= saved_search %>" class="row">
+    <div  class="col-md-12">
       <div class="page-header">
-        <h2>Saved Search <small><%= saved_search.capitalize %></small></h2>
+        <h2>
+          Saved Search 
+          <small>
+            <%= saved_search.capitalize %>
+            <div class="pull-right">Last Updated <abbr class="timeago updated_at"></abbr></div>
+          </small>
+        </h2>
       </div>
       <table class="saved_search table table-hover" data-saved-search="<%= saved_search %>">
 				<thead>
@@ -28,14 +46,16 @@
 						<th>Item Title</th>
 						<th>Seller</th>
 						<th>Current Bid</th>
+            <th>Shipping</th>
 						<th>Bids</th>
+            <th>End</th>
 						<th>Ignore?</th>
 					</tr>
 				</thead>
 				<tbody>
 				</tbody>
 			</table>
-      <% end %>
     </div>
 	</div>
+  <% end %>
 </div>

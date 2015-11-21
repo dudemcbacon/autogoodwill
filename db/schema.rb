@@ -11,20 +11,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025212618) do
+ActiveRecord::Schema.define(version: 20151120043658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "ignored_items", force: :cascade do |t|
-    t.string   "itemid"
-    t.string   "search_term"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "auctions", force: :cascade do |t|
+    t.integer  "autionid"
+    t.integer  "bids"
+    t.string   "country"
+    t.float    "current"
+    t.datetime "end"
+    t.string   "href"
+    t.string   "item"
+    t.integer  "itemid"
+    t.string   "seller"
+    t.float    "shipping"
+    t.string   "state"
+    t.integer  "zipcode"
+    t.boolean  "seen"
+    t.boolean  "bidding"
+    t.boolean  "ignore"
+    t.string   "searchterm"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "user_id"
   end
 
-  add_index "ignored_items", ["user_id"], name: "index_ignored_items_on_user_id", using: :btree
+  add_index "auctions", ["user_id"], name: "index_auctions_on_user_id", using: :btree
+
+  create_table "bidding_auctions", force: :cascade do |t|
+    t.integer  "autionid"
+    t.integer  "bids"
+    t.string   "country"
+    t.float    "current"
+    t.datetime "end"
+    t.string   "max"
+    t.string   "href"
+    t.string   "item"
+    t.integer  "itemid"
+    t.string   "seller"
+    t.float    "shipping"
+    t.string   "state"
+    t.integer  "zipcode"
+    t.boolean  "bidding"
+    t.boolean  "winning"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  add_index "bidding_auctions", ["user_id"], name: "index_bidding_auctions_on_user_id", using: :btree
 
   create_table "settings", force: :cascade do |t|
     t.string   "var",         null: false
@@ -63,5 +100,6 @@ ActiveRecord::Schema.define(version: 20151025212618) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "ignored_items", "users"
+  add_foreign_key "auctions", "users"
+  add_foreign_key "bidding_auctions", "users"
 end

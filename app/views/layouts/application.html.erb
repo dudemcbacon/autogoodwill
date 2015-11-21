@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= render(:partial => "partials/notify") %>
 </head>
 <body>
   <div class="wrapper">
@@ -20,22 +21,15 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i> <%= current_user.email %><span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Profile</a></li>
-							<li><a href="#">Settings</a></li>
+							<li><a href="/welcome/settings">Settings</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Logout</a></li>
+              <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
 						</ul>
 					</li>
 				</ul>
         <% end %>
       </div>
     </nav>
-
-    <% if notice %>
-    <p class="notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-    <p class="alert"><%= alert %></p>
-    <% end %>
 
     <%= yield %>
 

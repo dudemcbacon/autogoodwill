@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  autionid: 1
+  bids: 1
+  country: MyString
+  current: 1.5
+  end: 2015-11-17 08:56:41
+  href: MyString
+  item: MyString
+  itemid: MyString
+  seller: MyString
+  shipping: MyString
+  state: MyString
+  zipcode: 1
+  seen: false
+  bidding: false
+
+two:
+  autionid: 1
+  bids: 1
+  country: MyString
+  current: 1.5
+  end: 2015-11-17 08:56:41
+  href: MyString
+  item: MyString
+  itemid: MyString
+  seller: MyString
+  shipping: MyString
+  state: MyString
+  zipcode: 1
+  seen: false
+  bidding: false

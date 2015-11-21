@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'goodwill', '>= 0.1.3'
+gem 'goodwill', '>= 0.3.0'
 gem 'devise', '~> 3.5'
 gem 'font-awesome-rails', '~> 4.4'
 gem 'ledermann-rails-settings', '~> 2.4'
@@ -37,7 +37,9 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap', '~> 3.3'
   gem 'rails-assets-datatables', '~> 1.10'
   gem 'rails-assets-datatables-plugins', '~> 1.10'
+  gem 'rails-assets-mouse0270--bootstrap-notify', '~> 3.1'
   gem 'rails-assets-selectize', '~> 0.12'
+  gem 'rails-assets-timeago', '~> 1.4'
 end
 
 group :development, :test do
@@ -55,6 +57,6 @@ group :development do
 end
 
 group :production do
-  # Need for Heroku
+  # Needed for Heroku
   gem 'rails_12factor'
 end

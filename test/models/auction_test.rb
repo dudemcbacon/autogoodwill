@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class IgnoredItemsControllerTest < ActionController::TestCase
+class AuctionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

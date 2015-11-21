@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'welcome/in_progress' => 'welcome#in_progress'
   get 'welcome/index'
   get 'welcome/settings' => 'welcome#settings'
+  post 'welcome/settings' => 'welcome#settings_save'
 
   resources :ignored_items, :snipes
 

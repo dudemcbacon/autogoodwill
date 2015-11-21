@@ -19,4 +19,6 @@
 //= require microplugin
 //= require sifter
 //= require selectize
+//= require remarkable-bootstrap-notify
+//= require timeago
 //= require_tree .

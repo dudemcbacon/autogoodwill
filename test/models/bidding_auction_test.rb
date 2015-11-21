@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class IgnoredItemTest < ActiveSupport::TestCase
+class BiddingAuctionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

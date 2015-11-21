@@ -1,6 +1,20 @@
 <h1>poop</h1>
-<%= form_tag("/search", method: "get") do %>
-  <%= label_tag(:saved_searches, "Saved Searches:") %>
-  <%= text_field_tag(:saved_searches, @saved_searches.join(',')) %>
-  <%= submit_tag("Save") %>
-<% end %>
+<div class="row">
+  <div class="col-md-4">
+    <%= form_tag("/welcome/settings", method: "post") do %>
+      <div class="form-group">
+        <%= label_tag(:saved_searches, "Saved Searches:") %>
+        <%= text_field_tag(:saved_searches, @saved_searches.join(',')) %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:gw_user, "ShopGoodwill Username:") %>
+        <%= text_field_tag(:gw_user, @gw_user) %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:gw_pass, "ShopGoodwill Password:") %>
+        <%= text_field_tag(:gw_pass, '*' * 8) %>
+      </div>
+      <%= submit_tag("Save") %>
+    <% end %>
+  </div>
+</div>

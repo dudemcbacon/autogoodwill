@@ -46,13 +46,19 @@ $ ->
         { "data": "item" },
         { "data": "seller" },
         { "data": "current" },
+        { "data": "shipping" },
         { "data": "bids" },
+        { "data": "end" },
         {
           "data": null,
           "defaultContent": "<button class='btn btn-danger ignore'>Ignore</button>&nbsp;<button class='btn btn-primary view' data-toggle='modal' data-target='#itemModal'>View</button>"
         }
       ],
       "fnInitComplete": () ->
+        updated_at = data = savedSearchTables[name].row(0).data().updated_at
+        $('#' + name + ' .updated_at').text(updated_at)
+        $('#' + name + ' .updated_at').attr('title', updated_at)
+        $('#' + name + ' .updated_at').timeago()
         $('table[data-saved-search=' + name + ']').on( 'click', 'button.ignore', () ->
           data = savedSearchTables[name].row( $(this).parents('tr') ).data()
           ignore_item(this, data.itemid, name)
@@ -64,18 +70,25 @@ $ ->
     })
   )
 
-  in_progress_table = $('#in_progress').DataTable({
+  in_progress_table = $('#in_progress_table').DataTable({
     "ajax": "/welcome/in_progress",
     "columns": [
       { "data": "itemid" },
       { "data": "item" },
       { "data": "seller" },
       { "data": "current" },
+      { "data": "shipping" },
       { "data": "bids" },
+      { "data": "end" },
     ],
     "fnRowCallback": (element, object) ->
       $(element).addClass('success') if object.winning
       $(element).addClass('danger') unless object.winning
+    "fnInitComplete": () ->
+      updated_at = $('#in_progress_table').DataTable().row(0).data().updated_at
+      $('#in_progress .updated_at').text(updated_at)
+      $('#in_progress .updated_at').attr('title', updated_at)
+      $('#in_progress .updated_at').timeago()
   })
 
   $('input#saved_searches').selectize({
