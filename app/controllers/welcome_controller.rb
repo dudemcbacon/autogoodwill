@@ -1,27 +1,19 @@
 class WelcomeController < ApplicationController
   before_filter :authenticate_user!
 
+  def ignore_item
+    auctions = current_user.auctions.where(params['data'].symbolize_keys)
+    auctions.each do |auction|
+      auction.ignore = true
+      auction.save
+    end
+    render json: { data: auctions }
+  end
+
   def index
     @saved_searches = current_user.settings(:dashboard).saved_searches
   end
 
-  def search
-    if current_user.auctions.where(searchterm: params[:search]).empty?
-      logger.info("Getting search results for #{params[:search]} from ShopGoodwill.com")
-      account = Goodwill::Account.new(view_context.gw_user, view_context.gw_pass)
-      auctions = account.search(params[:search])
-      auctions.each do |auction|
-        new_auction = current_user.auctions.create(auction.to_hash)
-        new_auction.searchterm = params[:search]
-        new_auction.save
-      end
-      results = current_user.auctions
-    else
-      logger.info("Getting search results for #{params[:search]} from database")
-      results = current_user.auctions.where(searchterm: params[:search])
-    end
-    render json: { data: results }
-  end
 
   def in_progress
     if current_user.bidding_auctions.empty?
@@ -37,6 +29,33 @@ class WelcomeController < ApplicationController
       results = current_user.bidding_auctions
     end
     render json: { data: results }
+  end
+
+  def search
+    if current_user.auctions.where(searchterm: params[:search]).empty?
+      logger.info("Getting search results for #{params[:search]} from ShopGoodwill.com")
+      account = Goodwill::Account.new(view_context.gw_user, view_context.gw_pass)
+      auctions = account.search(params[:search])
+      auctions.each do |auction|
+        new_auction = current_user.auctions.create(auction.to_hash)
+        new_auction.searchterm = params[:search]
+        new_auction.save
+      end
+      results = current_user.auctions
+    else
+      logger.info("Getting search results for #{params[:search]} from database")
+      results = current_user.auctions.where(searchterm: params[:search], ignore: false)
+    end
+    render json: { data: results }
+  end
+
+  def seen_item
+    auctions = current_user.auctions.where(params['data'].symbolize_keys)
+    auctions.each do |auction|
+      auction.seen = true
+      auction.save
+    end
+    render json: { data: auctions }
   end
 
   def settings

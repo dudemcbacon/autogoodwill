@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  get 'welcome/search' => 'welcome#search'
   get 'welcome/in_progress' => 'welcome#in_progress'
   get 'welcome/index'
+  get 'welcome/search' => 'welcome#search'
   get 'welcome/settings' => 'welcome#settings'
+  post 'welcome/ignore_item' => 'welcome#ignore_item'
+  post 'welcome/seen_item' => 'welcome#seen_item'
   post 'welcome/settings' => 'welcome#settings_save'
 
   resources :ignored_items, :snipes
