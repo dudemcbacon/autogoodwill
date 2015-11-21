@@ -4,7 +4,6 @@ seen_item = (itemid, searchterm) ->
 
 ignore_item = (element, itemid, searchterm) ->
   data = { itemid: itemid, searchterm: searchterm }
-  alert itemid + ' - ' + searchterm
   $.post("/welcome/ignore_item", data: data).done(remove_row(element))
 
 remove_row = (element) ->
