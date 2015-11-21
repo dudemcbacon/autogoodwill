@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def ignore_item
     auctions = current_user.auctions.where(params['data'].symbolize_keys)
@@ -14,10 +14,9 @@ class WelcomeController < ApplicationController
     @saved_searches = current_user.settings(:dashboard).saved_searches
   end
 
-
   def in_progress
     if current_user.bidding_auctions.empty?
-      logger.info("Getting in progress auctions from ShopGoodwill.com")
+      logger.info('Getting in progress auctions from ShopGoodwill.com')
       account = Goodwill::Account.new(view_context.gw_user, view_context.gw_pass)
       results = account.in_progress
       results.each do |result|
@@ -25,7 +24,7 @@ class WelcomeController < ApplicationController
         bidding_auction.save
       end
     else
-      logger.info("Getting in progress auctions from database")
+      logger.info('Getting in progress auctions from database')
       results = current_user.bidding_auctions
     end
     render json: { data: results }
